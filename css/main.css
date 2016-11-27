@@ -1,0 +1,100 @@
+body{
+    vertical-align: middle;
+    direction: ltr;
+    font-family: Arial;
+}
+
+#header {
+    background-color: #0a64eb;
+}
+
+#header li {
+    display: inline-block;
+}
+
+#header ul {
+    display: inline-block;
+    margin: 0;
+    float: right;
+    margin-top: 8px;
+    margin-right: 44px;
+}
+
+#logoImg {
+    width: 2%;
+    display: inline-block;
+}
+
+#logoBtn {
+    font-size: 16px;
+    display: inline-block;
+}
+
+.header-item{
+    vertical-align: middle;
+    padding: 5px;
+    color: white;
+    text-shadow: 1px 1px 1px #000;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/*------------------------------------*/
+
+/*users*/
+
+#content {
+    margin: auto;
+    width: 75%;
+    height: 30%;
+    background-color: silver;
+}
+
+#searchPanel {
+    background-color: cadetblue;
+}
+
+#usersPanel {
+    background-color: aquamarine;
+    display: inline-block;
+    width: 70%;
+}
+
+.userInfo {
+    display: inline-block;
+    border-color: crimson;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 3px;
+    padding: 5px;
+    margin: 5px;
+    height: 120px;
+    width: 120px;
+    color: darkblue;
+    text-align: center;
+}
+
+#followingPanel {
+    display: inline-block;
+    width: 20%;
+    background-color: cornflowerblue;
+    padding: 10px;
+    border-color: crimson;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 10px;
+    text-align: center;
+}
+
+.userInfo img {
+    width: 50%;
+}
+
+.userInfo button{
+    font-size: 11px;
+}
+
+.userInfo p{
+    font-size: 8px;
+    color: black;
+}
