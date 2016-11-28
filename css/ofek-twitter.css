@@ -1,0 +1,43 @@
+#newTweetPanel{
+    height: 100px;
+}
+
+#newTweetPanel input{
+    height: 80%;
+    width: 70%;
+    font-size: 12px;
+}
+
+#newTweetPanel button{
+    font-size: 12px;
+}
+
+#tweetsPanel {
+    display: inline-block;
+}
+
+.tweet {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    padding: 1%;
+}
+
+.tweet img {
+    display: inline-block;
+    width: 7%;
+}
+
+.tweet p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.tweet h5 {
+    margin: 0;
+}
+
+.tweet .tweetContent {
+    display: inline-block;
+    vertical-align: top;
+}

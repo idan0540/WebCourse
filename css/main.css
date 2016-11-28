@@ -1,100 +1,70 @@
 body{
     vertical-align: middle;
     direction: ltr;
-    font-family: Arial;
+    font-family: Arial, serif;
 }
 
 #header {
     background-color: #0a64eb;
+    height: 35px;
+}
+
+#header a{
+    height: 100%;
 }
 
 #header li {
     display: inline-block;
+    height: 100%;
+    line-height: 220%;
 }
 
 #header ul {
     display: inline-block;
     margin: 0;
     float: right;
-    margin-top: 8px;
     margin-right: 44px;
 }
 
 #logoImg {
-    width: 2%;
     display: inline-block;
+    height: 70%;
+    padding: 0;
 }
 
 #logoBtn {
-    font-size: 16px;
+    font-size: 1.3vw;
     display: inline-block;
+    /* height: 100%; */
+    padding: 0;
+}
+
+#logoImg:hover{
+    background-color: rgba(180, 204, 255, 0.71);
+}
+
+#logoBtn:hover{
+    background-color: rgba(180, 204, 255, 0.71);
 }
 
 .header-item{
     vertical-align: middle;
-    padding: 5px;
+    padding: 4px;
     color: white;
     text-shadow: 1px 1px 1px #000;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 0.9vw;
+    height: 100%;
+    line-height: 200%;
 }
 
-/*------------------------------------*/
-
-/*users*/
+#header ul li:hover{
+    background-color: rgba(180, 204, 255, 0.71);
+}
 
 #content {
     margin: auto;
     width: 75%;
     height: 30%;
-    background-color: silver;
-}
-
-#searchPanel {
-    background-color: cadetblue;
-}
-
-#usersPanel {
-    background-color: aquamarine;
-    display: inline-block;
-    width: 70%;
-}
-
-.userInfo {
-    display: inline-block;
-    border-color: crimson;
-    border-style: solid;
-    border-radius: 5px;
-    border-width: 3px;
-    padding: 5px;
-    margin: 5px;
-    height: 120px;
-    width: 120px;
-    color: darkblue;
-    text-align: center;
-}
-
-#followingPanel {
-    display: inline-block;
-    width: 20%;
-    background-color: cornflowerblue;
-    padding: 10px;
-    border-color: crimson;
-    border-style: solid;
-    border-radius: 5px;
-    border-width: 10px;
-    text-align: center;
-}
-
-.userInfo img {
-    width: 50%;
-}
-
-.userInfo button{
-    font-size: 11px;
-}
-
-.userInfo p{
-    font-size: 8px;
-    color: black;
+    padding: 15px;
 }
