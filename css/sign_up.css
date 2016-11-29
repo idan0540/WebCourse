@@ -1,0 +1,18 @@
+#logo-img {
+    height: 100%;
+    display: inline-block;
+    /*padding-right: 5%;*/
+}
+
+.navbar-inverse {
+    background-color: #0a64eb;
+    background-image: none;
+}
+
+.navbar-inverse a {
+    color: white!important;
+}
+
+.navbar-inverse a:hover {
+    color: silver!important;
+}
