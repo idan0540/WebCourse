@@ -6,64 +6,79 @@
     <link rel='stylesheet' type='text/css' href="../css/bootstrap-theme.css">
     <link rel='stylesheet' type='text/css' href="../css/main.css">
     <link rel='stylesheet' type='text/css' href="../css/ofek-twitter.css">
+    <script src="../js/main.js"></script>
     <title>Ofek Twitter</title>
 </head>
 <body>
-<div id="header">
-    <img class="header-item" id="logoImg" src="../images/ofek.png">
-    <a class="header-item" id="logoBtn" href="ofek-twitter.html">OfekTwitter</a>
-    <ul>
-        <li>
-            <a href="sign_in.html" class="header-item">Sign in</a>
-        </li>
-        <li>
-            <a href="sign_up.html" class="header-item">Sign up</a>
-        </li>
-        <li>
-            <a href="users.html" class="header-item">Users</a>
-        </li>
-    </ul>
-</div>
-
-<div id="content">
-    <div id="newTweetPanel">
-        <input placeholder="tweet text...">
-        <button>publish</button>
+<div id="header" class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand header-item" href="ofek-twitter.html">
+                <img id="logo-img" src="../images/ofek.png">OfekTwitter
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="users.html" class="header-item">Users</a>
+            </li>
+            <li>
+                <a href="sign_in.html" class="header-item">Sign in</a>
+            </li>
+            <li>
+                <a href="sign_up.html" class="header-item">Sign up</a>
+            </li>
+        </ul>
     </div>
-    <div id="tweetsPanel">
-        <div class="tweet">
-            <img src="../images/useravatar.png">
-            <div class="tweetContent">
-                <h5>John Cena says:</h5>
-                <p>You can't see me!!!</p>
+</div>
+<div id="content" class="container">
+    <div id="new-tweet-panel">
+        <textarea placeholder="tweet text..." class="form-control" rows="3"></textarea>
+        <button class="btn btn-primary pull-right">publish</button>
+    </div>
+    <div id="tweets-panel">
+        <div class="row">
+            <div class="tweet">
+                <img class="user-img" src="../images/useravatar.png">
+                <div class="tweet-content">
+                    <div class="user-name">John Cena says:</div>
+                    <div class="user-msg">You can't see me!!!</div>
+                </div>
             </div>
         </div>
-        <div class="tweet">
-            <img src="../images/useravatar.png">
-            <div class="tweetContent">
-                <h5>Hani Nahmias says:</h5>
-                <p>Welcome to my room...</p>
+        <div class="row">
+            <div class="tweet">
+                <img class="user-img" src="../images/useravatar.png">
+                <div class="tweet-content">
+                    <div class="user-name">Hani Nahmias says:</div>
+                    <div class="user-msg">Welcome to my room...</div>
+                </div>
             </div>
         </div>
-        <div class="tweet">
-            <img src="../images/useravatar.png">
-            <div class="tweetContent">
-                <h5>Tal Mosseri says:</h5>
-                <p>B.O.G.E.D</p>
+        <div class="row">
+            <div class="tweet">
+                <img class="user-img" src="../images/useravatar.png">
+                <div class="tweet-content">
+                    <div class="user-name">Tal Mosseri says:</div>
+                    <div class="user-msg">B.O.G.E.D</div>
+                </div>
             </div>
         </div>
-        <div class="tweet">
-            <img src="../images/useravatar.png">
-            <div class="tweetContent">
-                <h5>Yaron Berlad says:</h5>
-                <p>Where is the pizza?</p>
+        <div class="row">
+            <div class="tweet">
+                <img class="user-img" src="../images/useravatar.png">
+                <div class="tweet-content">
+                    <div class="user-name">Yaron Berlad says:</div>
+                    <div class="user-msg">Where is the pizza?</div>
+                </div>
             </div>
         </div>
-        <div class="tweet">
-            <img src="../images/useravatar.png">
-            <div class="tweetContent">
-                <h5>Lebron James says:</h5>
-                <p>Im the king!...</p>
+        <div class="row">
+            <div class="tweet">
+                <img class="user-img" src="../images/useravatar.png">
+                <div class="tweet-content">
+                    <div class="user-name">Lebron James says:</div>
+                    <div class="user-msg">Im the king!...</div>
+                </div>
             </div>
         </div>
     </div>

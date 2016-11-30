@@ -8,96 +8,143 @@
     <title>Users</title>
 </head>
 <body>
-<div id="header">
-    <img class="header-item" id="logoImg" src="../images/ofek.png">
-    <a class="header-item" id="logoBtn" href="ofek-twitter.html">OfekTwitter</a>
-    <ul>
-        <li>
-            <a href="sign_in.html" class="header-item">Sign in</a>
-        </li>
-        <li>
-            <a href="sign_up.html" class="header-item">Sign up</a>
-        </li>
-        <li>
-            <a href="users.html" class="header-item">Users</a>
-        </li>
-    </ul>
+<div id="header" class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand header-item" href="ofek-twitter.html">
+                <img id="logo-img" src="../images/ofek.png">OfekTwitter</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="users.html" class="header-item">Users</a>
+            </li>
+            <li>
+                <a href="sign_in.html" class="header-item">Sign in</a>
+            </li>
+            <li>
+                <a href="sign_up.html" class="header-item">Sign up</a>
+            </li>
+        </ul>
+    </div>
 </div>
 <div id="content">
-    <div id="searchPanel">Filter by: <input placeholder="user name">
-        <button>ok</button>
-    </div>
-    <div id="usersPanel">
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <div>
-                <button>follow</button>
-                <p>Yaron Berlad</p>
+    <div class="row">
+        <div id="searchPanel">
+            <div class="col-md-3">
+                <input class="form-control" placeholder="filter by user name">
             </div>
-        </div>
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <div>
-                <button>follow</button>
-                <p>John Cena</p>
-            </div>
-        </div>
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <div>
-                <button>unfollow</button>
-                <p>Alona Tal</p>
-            </div>
-        </div>
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <div>
-                <button>follow</button>
-                <p>Lebron James</p>
-            </div>
-        </div>
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <div>
-                <button>follow</button>
-                <p>Hani Nahmias</p>
-            </div>
-        </div>
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <div>
-                <button>unfollow</button>
-                <p>Tal Mosseri</p>
-            </div>
-        </div>
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <div>
-                <button>follow</button>
-                <p>Random Gorilla</p>
-            </div>
+            <button class="btn btn-primary">ok</button>
         </div>
     </div>
-    <div id="followingPanel">
-        <h4>Following</h4>
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <div>
-                <button>unfollow</button>
-                <div>
-                    <p>Tal Mosseri</p>
+    <br>
+    <div class="row">
+        <div id="usersPanel" class="col-md-10">
+            <div class="userInfo col-md-2">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">follow</button>
+                        <div class="user-name">
+                            <p>Yaron Berlad</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="userInfo col-md-2">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">follow</button>
+                        <div class="user-name">
+                            <p>John Cena</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="userInfo col-md-2">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">unfollow</button>
+                        <div class="user-name">
+                            <p>Alona Tal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="userInfo col-md-2">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">follow</button>
+                        <div class="user-name">
+                            <p>Lebron James</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="userInfo col-md-2">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">follow</button>
+                        <div class="user-name">
+                            <p>Hani Nahmias</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="userInfo col-md-2">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">unfollow</button>
+                        <div class="user-name">
+                            <p>Tal Mosseri</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="userInfo col-md-2">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">follow</button>
+                        <div class="user-name">
+                            <p>Random Gorilla</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="userInfo">
-            <img src="../images/useravatar.png">
-            <button>unfollow</button>
-            <div>
-                <p>Alona Tal</p>
+        <div id="followingPanel" class="col-md-2">
+            <h4>Following</h4>
+            <div class="userInfo col-md-12">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">unfollow</button>
+                        <div class="user-name">
+                            <div>
+                                <p>Tal Mosseri</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="userInfo col-md-12">
+                <div class="thumbnail">
+                    <img src="../images/useravatar.png">
+                    <div class="user-option">
+                        <button class="btn btn-primary">unfollow</button>
+                        <div class="user-name">
+                            <p>Alona Tal</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 </body>

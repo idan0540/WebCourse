@@ -1,70 +1,26 @@
-body{
-    vertical-align: middle;
-    direction: ltr;
-    font-family: Arial, serif;
-}
-
-#header {
-    background-color: #0a64eb;
-    height: 35px;
-}
-
-#header a{
+#logo-img {
     height: 100%;
-}
-
-#header li {
     display: inline-block;
-    height: 100%;
-    line-height: 220%;
 }
 
-#header ul {
-    display: inline-block;
-    margin: 0;
-    float: right;
-    margin-right: 44px;
+.navbar-inverse {
+    background: #0a64eb none;
 }
 
-#logoImg {
-    display: inline-block;
-    height: 70%;
-    padding: 0;
+.navbar-inverse a {
+    color: #fff !important;
 }
 
-#logoBtn {
-    font-size: 1.3vw;
-    display: inline-block;
-    /* height: 100%; */
-    padding: 0;
-}
-
-#logoImg:hover{
-    background-color: rgba(180, 204, 255, 0.71);
-}
-
-#logoBtn:hover{
-    background-color: rgba(180, 204, 255, 0.71);
-}
-
-.header-item{
-    vertical-align: middle;
-    padding: 4px;
-    color: white;
-    text-shadow: 1px 1px 1px #000;
-    text-decoration: none;
-    font-size: 0.9vw;
-    height: 100%;
-    line-height: 200%;
-}
-
-#header ul li:hover{
-    background-color: rgba(180, 204, 255, 0.71);
+.navbar-inverse a:hover {
+    color: #c0c0c0 !important;
 }
 
 #content {
     margin: auto;
-    width: 75%;
-    height: 30%;
-    padding: 15px;
+    width: 90%;
+    padding: 10px;
+}
+
+#header {
+    border-radius: 0;
 }
