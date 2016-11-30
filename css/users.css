@@ -1,4 +1,4 @@
-#usersPanel {
+#users-panel {
     display: inline-block;
     vertical-align: top;
 }
@@ -7,7 +7,7 @@
     text-align: center;
 }
 
-#followingPanel {
+#following-panel {
     border: 5px solid #e6e6e6;
     border-radius: 5px;
     text-align: center;

@@ -6,7 +6,6 @@
     <link rel='stylesheet' type='text/css' href="../css/bootstrap-theme.css">
     <link rel='stylesheet' type='text/css' href="../css/main.css">
     <link rel='stylesheet' type='text/css' href="../css/ofek-twitter.css">
-    <script src="../js/main.js"></script>
     <title>Ofek Twitter</title>
 </head>
 <body>
@@ -32,56 +31,14 @@
 </div>
 <div id="content" class="container">
     <div id="new-tweet-panel">
-        <textarea placeholder="tweet text..." class="form-control" rows="3"></textarea>
-        <button class="btn btn-primary pull-right">publish</button>
+        <textarea id="new-tweet-text" placeholder="tweet text..." class="form-control" rows="3"></textarea>
+        <button id="btn-publish" class="btn btn-primary pull-right" onclick="publishNewTweet()">publish</button>
     </div>
     <div id="tweets-panel">
-        <div class="row">
-            <div class="tweet">
-                <img class="user-img" src="../images/useravatar.png">
-                <div class="tweet-content">
-                    <div class="user-name">John Cena says:</div>
-                    <div class="user-msg">You can't see me!!!</div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="tweet">
-                <img class="user-img" src="../images/useravatar.png">
-                <div class="tweet-content">
-                    <div class="user-name">Hani Nahmias says:</div>
-                    <div class="user-msg">Welcome to my room...</div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="tweet">
-                <img class="user-img" src="../images/useravatar.png">
-                <div class="tweet-content">
-                    <div class="user-name">Tal Mosseri says:</div>
-                    <div class="user-msg">B.O.G.E.D</div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="tweet">
-                <img class="user-img" src="../images/useravatar.png">
-                <div class="tweet-content">
-                    <div class="user-name">Yaron Berlad says:</div>
-                    <div class="user-msg">Where is the pizza?</div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="tweet">
-                <img class="user-img" src="../images/useravatar.png">
-                <div class="tweet-content">
-                    <div class="user-name">Lebron James says:</div>
-                    <div class="user-msg">Im the king!...</div>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
+
+<script src="../js/ofek-twitter.js"></script>
 </body>
 </html>
