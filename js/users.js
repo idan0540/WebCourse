@@ -1,50 +1,48 @@
-var users = [
-    {name: 'Yaron Berlad', follow: false},
-    {name: 'John Cena', follow: false},
-    {name: 'Alona Tal', follow: false},
-    {name: 'Lebron James', follow: false},
-    {name: 'Hani Nahmias', follow: false},
-    {name: 'Saba Tovia', follow: false},
-    {name: 'Random Gorilla', follow: false},
-    {name: 'Tal Mosseri', follow: false}];
-
+var users;
 var users_panel;
 var following_panel;
+
+var currId = "5e07631e-3974-47f8-a89c-bb41ce1e0e3d";
 
 window.addEventListener('load', onPageLoad, false);
 
 function printUsers(users) {
-    users_panel.innerHTML = "";
-    following_panel.innerHTML = "<h2>Following</h2>";
-    for(user in users) {
-        var btn_class = users[user].follow ? 'btn-danger' : 'btn-success';
-        var btn_text = users[user].follow ? 'unfollow' : 'follow';
-        users_panel.innerHTML +=
-            "<div class='userInfo col-md-2'>" +
-            "<div class='thumbnail'>" +
-            "<img src='../images/useravatar.png'>" +
-            "<div class='user-option'>" +
-            '<button id="btn-follow-state" class="btn ' + btn_class + ' + ' +
-            '" onclick= "' + "changeFollowState('" + users[user].name + "')" + '"> '+ btn_text + '</button>' +
-            "<div class='user-name'>" +
-            "<p>" + users[user].name +"</p>" +
-            "</div></div></div></div>";
-        if (users[user].follow) {
-            following_panel.innerHTML +=
-                "<div class='userInfo col-md-12'>" +
-                "<div class='thumbnail'>" +
-                "<img src='../images/useravatar.png'>" +
-                "<div class='user-option'>" +
-                '<button id="btn-follow-state" class="btn ' + btn_class + ' + ' +
-                '" onclick= "' + "changeFollowState('" + users[user].name + "')" + '"> '+ btn_text + '</button>' +
-                "<div class='user-name'>" +
-                "<p>" + users[user].name +"</p>" +
-                "</div></div></div></div>";
-        }
-    }
+    axios.get('http://10.103.50.193:8080/users')
+        .then(function (response) {
+            users_panel.innerHTML = "";
+            following_panel.innerHTML = "<h2>Following</h2>";
+            for (var index = 0; index < response.data.length; index++) {
+                users_panel.innerHTML +=
+                    "<div class='userInfo col-md-2'>" +
+                    "<div class='thumbnail'>" +
+                    "<img src='../images/useravatar.png'>" +
+                    "<div class='user-option'>" +
+                    '<button id="btn-follow-state" class="btn ' + 'btn-success' + ' + ' +
+                    '" onclick= "' + "changeFollowState('" + response.data[index]._id + "')" + '"> ' + 'follow' + '</button>' +
+                    "<div class='user-name'>" +
+                    "<p>" + response.data[index].username + "</p>" +
+                    "</div></div></div></div>";
+                if (response.data[index]._id === currId) {
+                    for (following of response.data[index].following) {
+                        following_panel.innerHTML +=
+                            "<div class='userInfo col-md-12'>" +
+                            "<div class='thumbnail'>" +
+                            "<img src='../images/useravatar.png'>" +
+                            "<div class='user-option'>" +
+                            '<button id="btn-follow-state" class="btn ' + 'btn-danger' + ' + ' +
+                            '" onclick= "' + "changeFollowState('" + following + "')" + '"> ' + 'unfollow' + '</button>' +
+                            "<div class='user-name'>" +
+                            "<p>" + following + "</p>" +
+                            "</div></div></div></div>";
+                    }
+                }
+            }
+        });
 }
 
-function changeFollowState(username) {
+
+
+function changeFollowState(userid) {
     myUser = users.filter(function (obj) {
         return obj.name === username;
     });

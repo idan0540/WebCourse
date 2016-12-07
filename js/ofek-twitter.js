@@ -1,68 +1,69 @@
-var tweets_insert;
-    // = [{username: 'Bobo', text: 'hello followers!'},
-    // {username: 'Elvis', text: 'this exercise is really easy!'},
-    // {username: 'Mimi', text: 'I want to go to sleep'}];
-var tweets_panel;
+let tweets_insert;
+
+let tweets_panel;
 
 window.addEventListener('load', onPageLoad, false);
 
 function loadTweets() {
-    // tweets_panel.innerHTML = "";
-    //tweets_panel = $("#tweets-panel").get(0);
-    tweets_panel = document.getElementById("tweets-panel");
+    var tweets = [];
+    var usernamePromises = [];
     axios.get('http://10.103.50.193:8080/tweets')
         .then(function (response) {
-            tweets_insert = response.data;
+            tweets = response.data;
         }).then(function () {
-        for (tweet of tweets_insert) {
-            tweets_panel.innerHTML +=
-                "<div class='row'>" +
-                "<div class='tweet'>" +
-                "<img class='user-img' src='../images/useravatar.png'>" +
-                "<div class='tweet-content'>" +
-                "<div class='user-name' style='color: green'> " +
-                tweet.user +
-                " says:</div>" +
-                "<div class='user-msg'>" +
-                tweet.text +
-                "</div></div></div></div>";
-        }
-    })
-        .catch(function (error) {
-            console.log(error);
+        tweets.forEach(function (tweet) {
+            usernamePromises.push(axios.get('http://10.103.50.193:8080/users/' + tweet.user).then(function (response) {
+                tweet.username = response.data[0].username;
+            }))
         });
+    }).then(function () {
+        axios.all(usernamePromises).then(function () {
+            tweets.forEach(function (tweet) {
+                createTweetHTML(tweet.username, tweet.text, "green");
+            })
+        });
+    });
 }
 
 function publishNewTweet() {
-    var new_tweet_text = $("#new-tweet-text").get(0);
-    tweets_panel = $("#tweets-panel").get(0);
-    // tweets_insert.push({username: "test user",
-    //                     text: new_tweet_text.value});
-    // -------
-    tweets_panel.innerHTML +=
-        "<div class='row'>" +
-        "<div class='tweet'>" +
-        "<img class='user-img' src='../images/useravatar.png'>" +
-        "<div class='tweet-content'>" +
-        "<div class='user-name' > " +
-        "test user" + " says:</div>" +
-        "<div class='user-msg'>" +
-        new_tweet_text.value.replace(/[<]/g, '&lt').replace(/[>]/g, '&gt') +
-        "</div></div></div></div>";
-    // -------
-    new_tweet_text.value = "";
-    // loadTweets();
+    let new_tweet_text = $("#new-tweet-text").get(0);
+    let filtered_text = new_tweet_text.value.replace(/[<]/g, '&lt').replace(/[>]/g, '&gt');
+    createTweetHTML("usertest", filtered_text, "black");
 }
 
 function onPageLoad() {
 
     loadTweets();
-    runTests();
 }
 
+function createTweetHTML(userName, tweetContent, color) {
+    let headDiv = $("#tweets-panel");
+    let rowDiv = document.createElement("div");
+    rowDiv.classList.add("row");
+    let tweetDiv = document.createElement("div");
+    tweetDiv.classList.add("tweet");
+    let userImg = document.createElement("img");
+    userImg.classList.add("user-img");
+    userImg.setAttribute("src", "../images/useravatar.png");
+    userImg.setAttribute("alt", "User Avatar");
+    let tweetContentDiv = document.createElement("div");
+    tweetContentDiv.classList.add('tweet-content');
+    let userNameDiv = document.createElement("div");
+    userNameDiv.classList.add("user-name");
+    userNameDiv.setAttribute("style", "color: " + color);
+    let userMsgDiv = document.createElement("div");
+    userMsgDiv.classList.add("user-msg");
 
+    userNameDiv.innerHTML = userName;
+    userMsgDiv.innerHTML = tweetContent;
 
-
+    headDiv.get(0).appendChild(rowDiv);
+    rowDiv.appendChild(tweetDiv);
+    tweetDiv.appendChild(userImg);
+    tweetDiv.appendChild(tweetContentDiv);
+    tweetContentDiv.appendChild(userNameDiv);
+    tweetContentDiv.appendChild(userMsgDiv);
+}
 
 
 function runTests() {
