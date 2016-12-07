@@ -5,6 +5,10 @@
     <link rel='stylesheet' type='text/css' href="../css/bootstrap-theme.css">
     <link rel='stylesheet' type='text/css' href="../css/main.css">
     <link rel='stylesheet' type='text/css' href="../css/users.css">
+    <script src="../js/OfekQuery.js"></script>
+    <script src="../js/users.js"></script>
+    <script src="../js/OfekTestFramework.js"></script>
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
     <title>Users</title>
 </head>
 <body>
@@ -31,22 +35,21 @@
     <div class="row">
         <div id="searchPanel">
             <div class="col-md-3">
-                <input class="form-control" placeholder="filter by user name">
+                <input id="filter-user" class="form-control" placeholder="filter by user name">
             </div>
-            <button class="btn btn-primary">ok</button>
+            <button class="btn btn-primary" onclick="filterUser()">ok</button>
         </div>
     </div>
     <br>
     <div class="row">
         <div id="users-panel" class="col-md-10">
         </div>
-        <h4>Following</h4>
         <div id="following-panel" class="col-md-2">
+
 
         </div>
     </div>
 </div>
 </div>
 </body>
-<script src="../js/users.js"></script>
 </html>

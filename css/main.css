@@ -24,3 +24,22 @@
 #header {
     border-radius: 0;
 }
+
+.failed {
+    background-color: rgb(251, 187, 185);
+}
+
+.passed {
+    background-color: #9efda2;
+}
+
+.testGroup {
+    padding: 5px;
+    margin: 10px auto;
+}
+
+.assert {
+    border: 1px solid black;
+    margin: 3px;
+    padding: 3px;
+}
