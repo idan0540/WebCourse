@@ -1,18 +1,21 @@
-let tweets_insert;
-
 let tweets_panel;
-
+let currId = "10c06b27-d8ee-4435-9cee-0a2a838ca14a";
+let tweets = [];
+const SERVER_URL = 'http://10.103.50.197:8000';
 window.addEventListener('load', onPageLoad, false);
 
+function onPageLoad() {
+    loadTweets();
+}
+
 function loadTweets() {
-    var tweets = [];
-    var usernamePromises = [];
-    axios.get('http://10.103.50.193:8080/tweets')
+    let usernamePromises = [];
+    axios.get(SERVER_URL + '/tweets')
         .then(function (response) {
             tweets = response.data;
         }).then(function () {
         tweets.forEach(function (tweet) {
-            usernamePromises.push(axios.get('http://10.103.50.193:8080/users/' + tweet.user).then(function (response) {
+            usernamePromises.push(axios.get('http://10.103.50.197:8000/users/' + tweet.user).then(function (response) {
                 tweet.username = response.data[0].username;
             }))
         });
@@ -28,13 +31,23 @@ function loadTweets() {
 function publishNewTweet() {
     let new_tweet_text = $("#new-tweet-text").get(0);
     let filtered_text = new_tweet_text.value.replace(/[<]/g, '&lt').replace(/[>]/g, '&gt');
-    createTweetHTML("usertest", filtered_text, "black");
+    axios.get("http://localhost:8000/users/" + currId)
+        .then(function (response) {
+            let username = response.data[0].username;
+            let newTweet = {
+                user: currId,
+                text: filtered_text
+            };
+            axios.put("http://localhost:8000/tweets", newTweet)
+                .then(function (response) {
+                    tweets.push(newTweet);
+                    createTweetHTML(username, filtered_text, "black");
+                    $("#new-tweet-text").get(0).value = "";
+                    // loadTweets();
+                });
+        });
 }
 
-function onPageLoad() {
-
-    loadTweets();
-}
 
 function createTweetHTML(userName, tweetContent, color) {
     let headDiv = $("#tweets-panel");
@@ -64,7 +77,6 @@ function createTweetHTML(userName, tweetContent, color) {
     tweetContentDiv.appendChild(userNameDiv);
     tweetContentDiv.appendChild(userMsgDiv);
 }
-
 
 function runTests() {
     test_group("Selectors", function () {

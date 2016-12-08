@@ -1,3 +1,4 @@
+/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
 * {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
