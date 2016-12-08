@@ -2,6 +2,7 @@ let tweets_panel;
 let currId = "10c06b27-d8ee-4435-9cee-0a2a838ca14a";
 let tweets = [];
 const SERVER_URL = 'http://10.103.50.197:8000';
+
 window.addEventListener('load', onPageLoad, false);
 
 function onPageLoad() {
@@ -10,20 +11,27 @@ function onPageLoad() {
 
 function loadTweets() {
     let usernamePromises = [];
-    axios.get(SERVER_URL + '/tweets')
-        .then(function (response) {
-            tweets = response.data;
-        }).then(function () {
-        tweets.forEach(function (tweet) {
-            usernamePromises.push(axios.get('http://10.103.50.197:8000/users/' + tweet.user).then(function (response) {
-                tweet.username = response.data[0].username;
-            }))
-        });
+    let userFollowing = [];
+    axios.get('http://10.103.50.197:8000/users/' + currId).then(function (response) {
+        userFollowing = response.data[0].following;
     }).then(function () {
-        axios.all(usernamePromises).then(function () {
+        axios.get('http://10.103.50.197:8000/tweets')
+            .then(function (response) {
+                tweets = response.data;
+            }).then(function () {
             tweets.forEach(function (tweet) {
-                createTweetHTML(tweet.username, tweet.text, "green");
-            })
+                usernamePromises.push(axios.get('http://10.103.50.197:8000/users/' + tweet.user).then(function (response) {
+                    tweet.username = response.data[0].username;
+                }))
+            });
+        }).then(function () {
+            axios.all(usernamePromises).then(function () {
+                tweets.forEach(function (tweet) {
+                    if (userFollowing.includes(tweet.user) || tweet.user == currId) {
+                        createTweetHTML(tweet.username, tweet.text, "green");
+                    }
+                })
+            });
         });
     });
 }
