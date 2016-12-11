@@ -6,17 +6,25 @@ let session = require('express-session');
 let app = express();
 let loginUser;
 
+let currId = 0;
+
 let users = [];
 let tweets = [];
 
 const PORT = 8000;
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use(bodyParser.json());
 app.use('/', express.static(path.resolve('public/')));
@@ -58,7 +66,7 @@ app.get('/tweets/:userId', function (req, res) {
 
 app.put('/tweets', function (req, res) {
     tweets.push({user: req.body.user, text: req.body.text});
-    fs.writeFile("./public/json/tweets.json",JSON.stringify(tweets));
+    fs.writeFile("./public/json/tweets.json", JSON.stringify(tweets));
     res.send();
 });
 
@@ -75,7 +83,7 @@ app.put('/users/:id', function (req, res) {
             }
         }
     });
-    fs.writeFile("./public/json/users.json",JSON.stringify(users));
+    fs.writeFile("./public/json/users.json", JSON.stringify(users));
     res.send();
 });
 
@@ -87,7 +95,7 @@ app.post('/users', function (req, res) {
     console.log("password" + password);
     console.log("confirmpassword" + confirmpassword);
     if (password === confirmpassword) {
-        users.push({_id: generateValidId(users), username: username, password: password, following: []});
+        users.push({_id: generateValidId(), username: username, password: password, following: []});
         fs.writeFile("./public/json/users.json", JSON.stringify(users));
         res.end(JSON.stringify({result: true}), 'utf-8');
     } else {
@@ -103,7 +111,6 @@ app.put('/login', function (req, res) {
         return (currUser.username === username && currUser.password == password);
     });
     if (user.length > 0) {
-        console.log(req.session._id);
         req.session.loginUser = user[0];
         res.send(user[0]);
     } else {
@@ -113,41 +120,9 @@ app.put('/login', function (req, res) {
 
 app.get('/logged', function (req, res) {
     res.send(req.session.loginUser);
-    console.log(req.session._id);
+    console.log(req.session.loginUser._id);
 });
 
-
-function generateID() {
-    return generateRandomString(8) + '-' + generateRandomString(4) + '-' + generateRandomString(4) + '-' +
-        generateRandomString(4) + '-' + generateRandomString(12);
-}
-
 function generateValidId(users) {
-    let newId = "";
-
-    do {
-        newId = generateID();
-    } while(!validId(users, newId));
-
-    return newId;
-}
-
-function generateRandomString(length) {
-    let mask = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-
-    for (let index = 0; index < length; index++) {
-        result += mask[Math.floor(Math.random() * mask.length)];
-    }
-
-    return result;
-}
-
-function validId(users, id) {
-    for (user of users) {
-        if (user._id === id) {
-            return false;
-        }
-    }
-    return true;
+    return currId++;
 }

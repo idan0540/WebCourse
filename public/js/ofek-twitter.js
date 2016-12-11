@@ -1,12 +1,21 @@
 let tweets_panel;
-let currId = "10c06b27-d8ee-4435-9cee-0a2a838ca14a";
+let currId;
 let tweets = [];
 const SERVER_URL = 'http://10.103.50.197:8000';
 
 window.addEventListener('load', onPageLoad, false);
 
 function onPageLoad() {
-    loadTweets();
+    axios.get('/logged').then(function (response) {
+        if (response.data !== "") {
+            currId = response.data._id;
+            loadTweets();
+        } else {
+            window.location = "/sign_in.html";
+        }
+    }).catch(function () {
+        window.location = "/sign_in.html";
+    });
 }
 
 function loadTweets() {

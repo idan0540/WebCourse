@@ -1,16 +1,25 @@
 let users;
 let users_panel;
 let following_panel;
-let currId = "10c06b27-d8ee-4435-9cee-0a2a838ca14a";
+let currId;
 let userFollowing = [];
 
 window.addEventListener('load', onPageLoad, false);
 
 function onPageLoad() {
-    following_panel = $("#following-panel").get(0);
-    users_panel = $("#users-panel").get(0);
-    tweets_panel = $("#tweets-panel").get(0);
-    printUsers(users);
+    axios.get('/logged').then(function (response) {
+        if (response.data !== "") {
+            currId = response.data._id;
+            following_panel = $("#following-panel").get(0);
+            users_panel = $("#users-panel").get(0);
+            tweets_panel = $("#tweets-panel").get(0);
+            printUsers(users);
+        } else {
+            window.location = "/sign_in.html";
+        }
+    }).catch(function () {
+        window.location = "/sign_in.html";
+    });
 }
 
 function printUsers() {
