@@ -1,8 +1,10 @@
 let express = require('express');
 let bodyParser = require("body-parser");
-let app = express();
 let fs = require("fs");
 let path = require("path");
+let session = require('express-session');
+let app = express();
+let loginUser;
 
 let users = [];
 let tweets = [];
@@ -93,6 +95,27 @@ app.post('/users', function (req, res) {
     }
     res.send();
 });
+
+app.put('/login', function (req, res) {
+    let username = req.body.username;
+    let password = req.body.password;
+    let user = users.filter(function (currUser) {
+        return (currUser.username === username && currUser.password == password);
+    });
+    if (user.length > 0) {
+        console.log(req.session._id);
+        req.session.loginUser = user[0];
+        res.send(user[0]);
+    } else {
+        res.sendStatus(500)
+    }
+});
+
+app.get('/logged', function (req, res) {
+    res.send(req.session.loginUser);
+    console.log(req.session._id);
+});
+
 
 function generateID() {
     return generateRandomString(8) + '-' + generateRandomString(4) + '-' + generateRandomString(4) + '-' +
