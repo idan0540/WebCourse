@@ -38,13 +38,13 @@ function addToCollection(collection, collectionToAdd) {
 }
 
 OfekQuery.prototype.addClass = function (className) {
-    for(object of this.objects) {
+    for (object of this.objects) {
         object.classList.add(className);
     }
 };
 
 OfekQuery.prototype.removeClass = function (className) {
-    for(object of this.objects) {
+    for (object of this.objects) {
         object.classList.remove(className);
     }
 };
@@ -56,7 +56,7 @@ OfekQuery.prototype.each = function (func) {
 };
 
 OfekQuery.prototype.map = function (func) {
-    var results = [];
+    let results = [];
     for (object of this.objects) {
         results.push(func(object));
     }
@@ -98,7 +98,7 @@ OfekQuery.prototype.css = function (property, value) {
 };
 
 OfekQuery.prototype.count = function () {
-    if(this.objects[0] != null) {
+    if (this.objects[0] != null) {
         return this.objects.length;
     }
     return 0;
@@ -110,7 +110,7 @@ OfekQuery.prototype.appendChild = function (childElement) {
     });
 };
 
-OfekQuery.prototype.getAttribute  = function (attributeName) {
+OfekQuery.prototype.getAttribute = function (attributeName) {
     this.map(function (obj) {
         return obj.getAttribute(attributeName);
     });
@@ -125,3 +125,41 @@ OfekQuery.prototype.setAttribute = function (attributeName, attributeValue) {
 OfekQuery.prototype.get = function (index) {
     return this.objects[index];
 };
+
+OfekQuery.prototype.value = function () {
+    if (arguments.length > 0) {
+        let val = arguments[0];
+        this.each(function (obj) {
+            obj.value = val;
+        });
+    } else {
+        let results = this.map(function (obj) {
+            return obj.value;
+        });
+        if (results.length == 1) results = results[0];
+        return results;
+    }
+};
+
+OfekQuery.prototype.replace = function (replace, value) {
+    this.each(function (obj) {
+        obj.innerHTML = obj.innerHTML.split(replace).join(value);
+    });
+};
+
+OfekQuery.prototype.empty = function () {
+    this.each(function (obj) {
+        obj.innerHTML = "";
+    });
+};
+
+OfekQuery.prototype.getAll = function () {
+    return this.objects;
+};
+
+function checkObject(object, tests) {
+    for (test of tests) {
+        if (!test(object)) return false;
+    }
+    return true;
+}

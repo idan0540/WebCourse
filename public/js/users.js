@@ -1,7 +1,7 @@
 let users;
 let users_panel;
 let following_panel;
-let currId;
+let myId;
 let userFollowing = [];
 
 window.addEventListener('load', onPageLoad, false);
@@ -9,7 +9,7 @@ window.addEventListener('load', onPageLoad, false);
 function onPageLoad() {
     axios.get('/logged').then(function (response) {
         if (response.data !== "") {
-            currId = response.data._id;
+            myId = response.data._id;
             following_panel = $("#following-panel").get(0);
             users_panel = $("#users-panel").get(0);
             tweets_panel = $("#tweets-panel").get(0);
@@ -24,7 +24,7 @@ function onPageLoad() {
 
 function printUsers() {
 
-    axios.get("http://10.103.50.197:8000/users/" + currId)
+    axios.get("http://10.103.50.197:8000/users/" + myId)
         .then(function (response) {
             userFollowing = response.data[0].following;
         }).then(function () {
@@ -34,7 +34,7 @@ function printUsers() {
                 users_panel.innerHTML = "";
                 following_panel.innerHTML = "<h2>Following</h2>";
                 for (let index = 0; index < users.length; index++) {
-                    if (users[index]._id !== currId) {
+                    if (users[index]._id !== myId) {
                         if (userFollowing.includes(users[index]._id)) {
                             users[index].follow = true;
                             buildUserFollowing(users[index]);
@@ -84,7 +84,7 @@ function changeFollowState(userid) {
     myUser = users.filter(function (obj) {
         return obj._id === userid;
     })[0];
-    axios.put('http://10.103.50.197:8000/users/' + currId, myUser).then(function (response) {
+    axios.put('http://10.103.50.197:8000/users/' + myId, myUser).then(function (response) {
         myUser.follow = !myUser.follow;
         if (myUser.follow) {
             userFollowing.push(myUser);
